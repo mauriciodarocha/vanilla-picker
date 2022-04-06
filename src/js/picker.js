@@ -437,7 +437,7 @@ class Picker {
 
         //Select alpha
         if(this.settings.alpha) {
-            utils.dragTrack(events, this._domA,  (x, y) => that._setHSLA(null, null, null, 1 - y));
+            utils.dragTrack(events, this._domA,  (x, y) => that._setHSLA(null, null, null, x));
         }
         
         
@@ -604,11 +604,11 @@ class Picker {
 
         /* Alpha */
         
-        posY(uiA,  thumbA,  1 - hsl[3]);
+        posX(uiA,  thumbA,  hsl[3]);
 
         const opaque = cssHSL,
               transp = opaque.replace('hsl', 'hsla').replace(')', ', 0)'),
-              bg = `linear-gradient(${[opaque, transp]})`;
+              bg = `linear-gradient(90deg, ${[transp, opaque]})`;
 
         //Let the Alpha slider fade from opaque to transparent:
         this._domA.style.background = bg + ', ' + BG_TRANSP;
