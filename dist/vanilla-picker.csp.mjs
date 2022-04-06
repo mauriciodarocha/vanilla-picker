@@ -2,7 +2,7 @@
  * vanilla-picker v2.12.1
  * https://vanilla-picker.js.org
  *
- * Copyright 2017-2021 Andreas Borgen (https://github.com/Sphinxxxx), Adam Brooks (https://github.com/dissimulate)
+ * Copyright 2017-2022 Andreas Borgen (https://github.com/Sphinxxxx), Adam Brooks (https://github.com/dissimulate)
  * Released under the ISC license.
  */
 var classCallCheck = function (instance, Constructor) {
@@ -797,7 +797,7 @@ var Picker = function () {
 
             if (this.settings.alpha) {
                 dragTrack(events, this._domA, function (x, y) {
-                    return that._setHSLA(null, null, null, 1 - y);
+                    return that._setHSLA(null, null, null, x);
                 });
             }
 
@@ -935,11 +935,11 @@ var Picker = function () {
 
             uiSL.style.color = cssHSL;
 
-            posY(uiA, thumbA, 1 - hsl[3]);
+            posX(uiA, thumbA, hsl[3]);
 
             var opaque = cssHSL,
                 transp = opaque.replace('hsl', 'hsla').replace(')', ', 0)'),
-                bg = 'linear-gradient(' + [opaque, transp] + ')';
+                bg = 'linear-gradient(90deg, ' + [transp, opaque] + ')';
 
             this._domA.style.background = bg + ', ' + BG_TRANSP;
 
